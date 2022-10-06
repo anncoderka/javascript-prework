@@ -1,9 +1,3 @@
-var argMoveId, argPlayerMove, argComputerMove, 
-	computerMove, playerMove, randomNumber, 
-	playerInput;
-var argButtonName, buttonTest, 
-	buttonRock, buttonPaper, buttonScissors;
-
 /**
  * Returns a move name. Converts an ID or number to a name or a string.
  */
@@ -48,10 +42,10 @@ function buttonClicked(argButtonName) {
 	clearMessages();
 	console.log(argButtonName + ' został kliknięty');
   
-	playerMove = argButtonName;
-	randomNumber = Math.floor(Math.random() * 3 + 1);
+	const playerMove = argButtonName;
+	const randomNumber = Math.floor(Math.random() * 3 + 1);
 	console.log('wylosowana liczba to: ' + randomNumber);
-	computerMove = getMoveName(randomNumber);
+	const computerMove = getMoveName(randomNumber);
 	console.log('ruch komputera to: ' + computerMove);
 	displayResult(playerMove, computerMove);
 }
