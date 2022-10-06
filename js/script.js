@@ -1,9 +1,11 @@
 var argMoveId, argPlayerMove, argComputerMove, 
 	computerMove, playerMove, randomNumber, 
 	playerInput;
+var argButtonName, buttonTest, 
+	buttonRock, buttonPaper, buttonScissors;
 
 /**
- * Returns a more name.
+ * Returns a move name. Converts an ID or number to a name or a string.
  */
 function getMoveName(argMoveId) {
   console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
@@ -20,7 +22,8 @@ function getMoveName(argMoveId) {
 }
 
 /**
- * Returns a game result.
+ * Returns a game result. 
+ * Compares a palyer move with an opponent move and generates a result.
  */
 function displayResult(argPlayerMove, argComputerMove) {
   console.log('wywołano funkcję displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
@@ -37,12 +40,30 @@ function displayResult(argPlayerMove, argComputerMove) {
   }
   printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
 }
-playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-console.log('wybór ruchu gracza to: ' + playerInput);
-playerMove = getMoveName(playerInput);
-console.log('ruch gracza to: ' + playerMove);
-randomNumber = Math.floor(Math.random() * 3 + 1);
-console.log('wylosowana liczba to: ' + randomNumber);
-computerMove = getMoveName(randomNumber);
-console.log('ruch komputera to: ' + computerMove);
-displayResult(playerMove, computerMove);
+
+/**
+ * This function clears the message nad writes out text.
+ */
+function buttonClicked(argButtonName) {
+	clearMessages();
+	console.log(argButtonName + ' został kliknięty');
+  
+	playerMove = argButtonName;
+	randomNumber = Math.floor(Math.random() * 3 + 1);
+	console.log('wylosowana liczba to: ' + randomNumber);
+	computerMove = getMoveName(randomNumber);
+	console.log('ruch komputera to: ' + computerMove);
+	displayResult(playerMove, computerMove);
+}
+
+buttonTest = document.getElementById('button-test');
+buttonRock = document.getElementById('button-rock');
+buttonPaper = document.getElementById('button-paper');
+buttonScissors = document.getElementById('button-scissors');
+
+buttonTest.addEventListener('click', function(){ buttonClicked('Guzik TEST'); });
+buttonRock.addEventListener('click', function(){ buttonClicked('kamień'); });
+buttonPaper.addEventListener('click', function(){ buttonClicked('papier'); });
+buttonScissors.addEventListener('click', function(){ buttonClicked('nożyce'); });
+
+
